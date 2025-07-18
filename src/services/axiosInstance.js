@@ -1,13 +1,12 @@
 import axios from "axios";
-import { useAuth } from "../context/useAuth";
 
-const {user} = useAuth();
 
-export const axiosInstance = axios.create({
+
+export const axiosInstance = (token) =>  axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
   headers: {
     'Authorization': `Bearer ${token}`,
-    'Content-Type': 'application/json',
+    // 'Content-Type': 'application/json',
   }
 });
 
@@ -17,3 +16,10 @@ export const axiosInstanceWithoutToken = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+export const axiosInstanceWithoutBaseURL = (token) => axios.create({
+  headers: {
+    'Authorization': `Bearer ${token}`,
+    // 'Content-Type': 'application/json',
+  }
+})

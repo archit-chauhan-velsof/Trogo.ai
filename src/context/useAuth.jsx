@@ -8,5 +8,7 @@ export const useAuth = () => {
     return user && user.role === requiredRole;
   };
 
-  return { user, login, logout, isAuthorized };
+  const token = user?.name?.accessToken
+
+  return { token,user, login, logout, isAuthorized };
 };
